@@ -1,8 +1,8 @@
 package com.paulrcam;
 
 import com.paulrcam.domain.Employee;
-import com.paulrcam.application.Calculate;
-import com.paulrcam.infrastructure.ParseData;
+import com.paulrcam.operations.Calculate;
+import com.paulrcam.operations.ParseData;
 
 import java.io.IOException;
 
@@ -19,7 +19,6 @@ public class main {
 
 
         Employee employee= parseData.txtToEmployee(INPUT_FILE);
-        System.out.println(employee);
         Calculate calculate= new Calculate(employee);
 
         System.out.println(calculate.calcTotalPrice());

@@ -1,5 +1,8 @@
-package com.paulrcam.application;
+package com.paulrcam.operations;
 
+import com.paulrcam.domain.DayStrategy.Day;
+import com.paulrcam.domain.DayStrategy.Midweek;
+import com.paulrcam.domain.DayStrategy.Weekend;
 import com.paulrcam.domain.Employee;
 import com.paulrcam.domain.Schedule;
 import com.paulrcam.domain.Shift;
@@ -17,9 +20,9 @@ public class Calculate {
      *  and not be filled with excessive functionality
      */
 
-    private static String[] MIDWEEK_DAYS = {"MO", "TU", "WE", "TH", "FR"};
-    private static String[] WEEKEND_DAYS = {"SA", "SU"};
-    private static List<Shift> SHIFTS = List.of(
+    private static final String[] MIDWEEK_DAYS = {"MO", "TU", "WE", "TH", "FR"};
+    private static final String[] WEEKEND_DAYS = {"SA", "SU"};
+    private static final List<Shift> SHIFTS = List.of(
             new Shift("EARLY_MORNING", LocalTime.parse("00:00", DateTimeFormatter.ISO_TIME), LocalTime.parse("09:00", DateTimeFormatter.ISO_TIME)),
             new Shift("DAY", LocalTime.parse("09:01", DateTimeFormatter.ISO_TIME), LocalTime.parse("18:00", DateTimeFormatter.ISO_TIME)),
             new Shift("NIGHT", LocalTime.parse("18:01", DateTimeFormatter.ISO_TIME), LocalTime.parse("23:59", DateTimeFormatter.ISO_TIME)));
@@ -39,7 +42,7 @@ public class Calculate {
     public Double calcTotalPrice(){
 
 
-        Double totalPay=0.0;
+        double totalPay=0.0;
 
         for (String hourWorkedString: employee.getTimesWorked()) {
 
@@ -66,7 +69,7 @@ public class Calculate {
         Double hoursElapsed=-1.0;
         String typeOfDay= null;
         Double valueHour=-1.0;
-        Double pay=-1.0;
+        double pay;
 
 
         if (Arrays.asList(MIDWEEK_DAYS).contains(day)) {
@@ -77,6 +80,7 @@ public class Calculate {
             typeOfDay="WEEKEND";
         }
 
+        //Separation of hours
         String sinceHourString = hourWorkedString.split("-")[0];
         String toHourString = hourWorkedString.split("-")[1];
 
@@ -87,58 +91,27 @@ public class Calculate {
 
         for (Shift shift : SHIFTS) {
 
-
-            String shiftSince = "sc";
-            String shiftTo = "st";
-
-            if (hourSince.isAfter(shift.getHourSince()) && hourSince.isBefore(shift.getHourTo())) {
-                shiftSince = shift.getShift();
-            } else {
-                new Exception("No existe hora");
-            }
-            if (hourTo.isAfter(shift.getHourSince()) && hourSince.isBefore(shift.getHourTo())) {
-
-                shiftTo = shift.getShift();
-
-            }
-
-
-
-            if (shiftSince.equals(shiftTo)) {
                 shiftReal = shift.getShift();
+
                 Duration timeElapsed = Duration.between(hourSince, hourTo);
-                hoursElapsed = Double.valueOf(timeElapsed.getSeconds() / 3600);
+                hoursElapsed = Double.valueOf(timeElapsed.getSeconds() / 3600.0);
 
+                /**
+                 *
+                 * PATTERN DESIGN: STRATEGY
+                 */
 
-                if (shiftReal.equals("EARLY_MORNING")) {
-                    if (typeOfDay.equals("MIDWEEK")) {
-                        valueHour = 25.00;
-                    } else if (typeOfDay.equals("WEEKEND")) {
-                        valueHour = 30.00;
+                Day today = null;
+                if (typeOfDay.equals("MIDWEEK")) {
 
-                    }
-                } else if (shiftReal.equals("DAY")) {
-                    if (typeOfDay.equals("MIDWEEK")) {
+                    today= new Midweek();
+                }else if (typeOfDay.equals("WEEKEND")) {
+                    today= new Weekend();
 
-                        valueHour = 15.00;
-                    } else if (typeOfDay.equals("WEEKEND")) {
-
-                        valueHour = 20.00;
-                    }
-                } else if (shiftReal.equals("NIGHT")) {
-                    if (typeOfDay.equals("MIDWEEK")) {
-
-                        valueHour = 20.00;
-                    } else if (typeOfDay.equals("WEEKEND")) {
-
-                        valueHour = 25.00;
-                    }
                 }
+                valueHour= today.payValue(shiftReal);
 
 
-            } else {
-                new Exception("No se pueden escribir rangos tan grandes");
-            }
 
 
         }

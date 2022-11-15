@@ -11,8 +11,6 @@ public class Employee {
 
     private double totalHours;
 
-    private double totalPay;
-
     public Employee(String name, List<String> timesWorked) {
         this.name = name;
         this.timesWorked = timesWorked;
@@ -42,21 +40,12 @@ public class Employee {
         this.totalHours = totalHours;
     }
 
-    public double getTotalPay() {
-        return totalPay;
-    }
-
-    public void setTotalPay(double totalPay) {
-        this.totalPay = totalPay;
-    }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
                 ", timesWorked=" + timesWorked +
-                ", totalHours=" + totalHours +
-                ", totalPay=" + totalPay +
-                '}';
+                ", totalHours=" + totalHours +'}';
     }
 }

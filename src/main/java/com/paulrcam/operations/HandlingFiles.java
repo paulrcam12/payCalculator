@@ -1,10 +1,10 @@
-package com.paulrcam.infrastructure;
+package com.paulrcam.operations;
 
 import java.io.*;
 
 public class HandlingFiles {
 
-    protected String readFromInputStream(InputStream inputStream)
+    public String readFromInputStream(InputStream inputStream)
             throws IOException {
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br
@@ -13,7 +13,6 @@ public class HandlingFiles {
             while ((line = br.readLine()) != null) {
                 // resultStringBuilder.append(line).append("\n");
                  resultStringBuilder.append(line);
-
             }
         }
         return resultStringBuilder.toString();

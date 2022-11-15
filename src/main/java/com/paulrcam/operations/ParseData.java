@@ -1,4 +1,4 @@
-package com.paulrcam.infrastructure;
+package com.paulrcam.operations;
 
 import com.paulrcam.domain.Employee;
 
