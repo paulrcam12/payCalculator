@@ -28,23 +28,21 @@ public class Calculate {
             new Shift("NIGHT", LocalTime.parse("18:01", DateTimeFormatter.ISO_TIME), LocalTime.parse("23:59", DateTimeFormatter.ISO_TIME)));
 
 
-    Employee employee;
 
 
 
-    public Calculate(Employee employee) {
-    this.employee = employee;
+    public Calculate() {
 
     }
 
 
 
-    public Double calcTotalPrice(){
+    public Double calcTotalPrice(List<String> hourTimesWorked){
 
 
         double totalPay=0.0;
 
-        for (String hourWorkedString: employee.getTimesWorked()) {
+        for (String hourWorkedString: hourTimesWorked) {
 
 
 
@@ -91,6 +89,20 @@ public class Calculate {
 
         for (Shift shift : SHIFTS) {
 
+            String shiftSince = "sc";
+            String shiftTo = "st";
+
+            if (hourSince.isAfter(shift.getHourSince()) && hourSince.isBefore(shift.getHourTo())) {
+                shiftSince = shift.getShift();
+            } else {
+                new Exception("No existe hora");
+            }
+            if (hourTo.isAfter(shift.getHourSince()) && hourSince.isBefore(shift.getHourTo())) {
+
+                shiftTo = shift.getShift();
+
+            }
+            if (shiftSince.equals(shiftTo)) {
                 shiftReal = shift.getShift();
 
                 Duration timeElapsed = Duration.between(hourSince, hourTo);
@@ -103,18 +115,18 @@ public class Calculate {
 
                 Day today = null;
                 if (typeOfDay.equals("MIDWEEK")) {
-
-                    today= new Midweek();
-                }else if (typeOfDay.equals("WEEKEND")) {
-                    today= new Weekend();
-
+                    today = new Midweek();
+                } else if (typeOfDay.equals("WEEKEND")) {
+                    today = new Weekend();
                 }
-                valueHour= today.payValue(shiftReal);
+                valueHour = today.payValue(shiftReal);
 
 
-
-
+            }
         }
+
+
+
 
         pay = hoursElapsed* valueHour;
 

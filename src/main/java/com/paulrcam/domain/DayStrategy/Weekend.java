@@ -17,17 +17,12 @@ public class Weekend implements Day {
         switch (Shift) {
             case "EARLY_MORNING":
                 value = VALUE_EARLY_MORNING;
-
                 break;
-
             case "DAY":
-
                 value = VALUE_DAY;
                 break;
             case "NIGHT":
-
                 value = VALUE_NIGHT;
-
                 break;
         }
         return value;

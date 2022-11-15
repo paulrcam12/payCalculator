@@ -10,6 +10,7 @@ import java.io.IOException;
 public class main {
 
     public static String INPUT_FILE = "/inputs/rene13112022.txt";
+    //public static String INPUT_FILE = "/inputs/test1.txt";
     //public static String INPUT_FILE = "/inputs/astrid13112022.txt";
 
 
@@ -19,9 +20,9 @@ public class main {
 
 
         Employee employee= parseData.txtToEmployee(INPUT_FILE);
-        Calculate calculate= new Calculate(employee);
+        Calculate calculate= new Calculate();
 
-        System.out.println(calculate.calcTotalPrice());
+        System.out.println(calculate.calcTotalPrice(employee.getTimesWorked()));
 
     }
 }
