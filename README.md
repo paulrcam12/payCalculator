@@ -169,6 +169,11 @@ Indicate how much the employee has to be paid
 The amount to pay RENE is 215.0 USD.
 ```
 
+## Testing
+
+To see the unit tests you can enter this [link](https://github.com/paulrcam12/payCalculator/tree/main/src/test/java/com/paulrcam).
+
+
 ## Features
 
 - Import text files with input data.
