@@ -16,11 +16,9 @@ public class main {
 
     public static void main(String[] args) throws IOException {
 
+
         ParseData parseData= new ParseData();
-
-
         Employee employee= parseData.txtToEmployee(INPUT_FILE);
-
 
         Calculate calculate= new Calculate();
 
