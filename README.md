@@ -25,7 +25,7 @@ The name of an employee and the schedule they worked, indicating the time and ho
 RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00
 ```
 ## Architecture
-![My Image](image1.jpg)
+![My Image](image1.png)
 ### Main
 Based on the SOLID principles the objects have been encapsulated so that the main code has the fewest lines of code and everything is correctly separated and independent to explain better, they separate it into three parts.
 ```java
