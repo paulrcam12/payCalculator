@@ -1,5 +1,5 @@
 # Pay Calculator
-
+by Wilson Paul Rojas C.
 
 ## Overview
 The company ACME offers their employees the flexibility to work the hours they want. They will pay for the hours worked based on the day of the week and time of day, according to the following table:
@@ -25,7 +25,7 @@ The name of an employee and the schedule they worked, indicating the time and ho
 RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00
 ```
 ## Architecture
-![My Image](image1.png)
+![My Image](image1.jpg)
 ### Main
 Based on the SOLID principles the objects have been encapsulated so that the main code has the fewest lines of code and everything is correctly separated and independent to explain better, they separate it into three parts.
 ```java
@@ -73,7 +73,7 @@ I calculate the total price passing as a parameter a list of "Strings" with the 
 Calculate calculate= new Calculate();
 Double pay= calculate.calcTotalPrice(employee.getTimesWorked());
 ```
-La función  ```calculate.calcTotalPrice(employee.getTimesWorked()); ``` es la que calcula el tiempo trabajado y su valor en dólares.
+The function  ```calculate.calcTotalPrice(employee.getTimesWorked()); ``` is the one that calculates the time worked and its value in dollars.
 
 ```java
 public Double calcTotalPrice(List<String> hourTimesWorked){
@@ -163,7 +163,8 @@ Finally, I output to the console with the concatenated message so that the user 
 ```java
  System.out.println("The amount to pay "+employee.getName()+" is "+pay+" USD.");
 ```
-Output: indicate how much the employee has to be paid
+### Output: 
+Indicate how much the employee has to be paid
 ```sh
 The amount to pay RENE is 215.0 USD.
 ```
