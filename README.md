@@ -25,7 +25,15 @@ The name of an employee and the schedule they worked, indicating the time and ho
 RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00
 ```
 ## Architecture
+I used the clean code architecture as correct as possible, ordering the packages and classes in such a way that there is always an order from the outside to the inside, as shown in the image.
+
 ![My Image](image1.png)
+
+## SOLID Principles
+SOLID principles such as "The Single Responsibility Principle" and "Open-Closed Principle" were used in all functions.
+
+## Design Patterns
+Finally, the "Strategy" design pattern was used to separate the WEEKEND and MIDWEEK classes and develop strategies to calculate prices according to the type of day.
 ### Main
 Based on the SOLID principles the objects have been encapsulated so that the main code has the fewest lines of code and everything is correctly separated and independent to explain better, they separate it into three parts.
 ```java
