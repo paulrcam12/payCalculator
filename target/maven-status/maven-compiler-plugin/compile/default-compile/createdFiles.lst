@@ -1,0 +1,10 @@
+com\paulrcam\domain\DayStrategy\Weekend.class
+com\paulrcam\operations\ParseData.class
+com\paulrcam\domain\DayStrategy\Midweek.class
+com\paulrcam\domain\Shift.class
+com\paulrcam\operations\Calculate.class
+com\paulrcam\domain\Employee.class
+com\paulrcam\operations\HandlingFiles.class
+com\paulrcam\domain\Schedule.class
+com\paulrcam\main.class
+com\paulrcam\domain\DayStrategy\Day.class

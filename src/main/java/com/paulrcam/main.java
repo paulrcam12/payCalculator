@@ -20,9 +20,13 @@ public class main {
 
 
         Employee employee= parseData.txtToEmployee(INPUT_FILE);
+
+
         Calculate calculate= new Calculate();
 
-        System.out.println(calculate.calcTotalPrice(employee.getTimesWorked()));
+        Double pay= calculate.calcTotalPrice(employee.getTimesWorked());
+
+        System.out.println("The amount to pay "+employee.getName()+" is "+pay+" USD.");
 
     }
 }
